@@ -1,0 +1,63 @@
+﻿@model List<Activity2Part1.Models.ButtonModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        .label1{
+            text-align: center;
+            font-weight: bold;
+            font-size: 24px;
+            font-family: Arial;
+        }
+        .label2{
+            text-align: left;
+            font-weight: bold;
+            font-size: 18px;
+            font-family: Arial;
+        }
+
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Button</title>
+</head>
+<body>
+    <div>
+        @Html.Label("Welcome to Razor", new { @class = "label1" })
+        <br /><br />
+        @Html.Label("Play with Buttons", new { @class = "label2" })
+    </div>
+    @using (Html.BeginForm("OnButtonClick", "Button", FormMethod.Post))
+    {
+        <div>
+            <button type="submit" name="mine" value="1">
+                @if (Model[0].State)
+                {
+                    <img src="~/Images/PinClipart.com_button-clipart_321685.png" />
+                }
+                else
+                {
+                    <img src="~/Images/PinClipart.com_sewing-images-clip-art_484060.png" />
+                }
+            </button>
+            <br />
+            <button type="submit" name="mine" value="2">
+                @if (Model[1].State)
+                {
+                    <img src="~/Images/PinClipart.com_button-clipart_321685.png" />
+                }
+                else
+                {
+                    <img src="~/Images/PinClipart.com_sewing-images-clip-art_484060.png" />
+                }
+            </button>
+            <br />
+        </div>
+    }
+</body>
+</html>
