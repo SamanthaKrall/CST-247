@@ -1,0 +1,39 @@
+﻿@model Tuple<List<Activity2Part1.Models.CustomerModel>, Activity2Part1.Models.CustomerModel>
+
+@{
+    AjaxOptions ajaxOptions = new AjaxOptions();
+    ajaxOptions.HttpMethod = "Post";
+    ajaxOptions.InsertionMode = InsertionMode.Replace;
+    ajaxOptions.UpdateTargetId = "customerInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+</head>
+<body>
+    @Html.Label("Please select a custoemr");
+    @using(Ajax.BeginForm("OnSelectCustomer", "Customer", ajaxOptions, new { @id = "myform" }))
+    {
+        foreach (var item in Model.Item1)
+        {
+            @Html.RadioButtonFor(Model => Model.Item1, item.ID, new { @name = "Customer", @id = "Customer", @value = item.ID, @checked = false, @onchange = "myform.submit(this.value)" });
+            @Html.Label(item.Name);
+            <br />
+        }
+    }
+    <h3 style="margin: 1.5rem 0 0;">Customer Details</h3>
+    <div id="customerInfo">
+        @Html.Partial("_CustomerDetails", Model.Item2);
+    </div>
+    <script>
+        $.post('@Url.Action("GetMoreInfo", "Customer")', { customer: 2 }, function (data) { alert(data); });
+    </script>
+</body>
+</html>

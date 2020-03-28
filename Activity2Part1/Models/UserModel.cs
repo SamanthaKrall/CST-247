@@ -14,11 +14,13 @@ namespace Activity2Part1.Models
         [StringLength(20, MinimumLength =4)]
         [DefaultValue("")]
         public string Name { get; set; }
+
         [Required]
         [DisplayName("Password")]
         [StringLength(20, MinimumLength =4)]
         [DefaultValue("")]
         public string Password { get; set; }
+
         public string Email { get; set; }
         public string Phone { get; set; }
 
@@ -28,6 +30,11 @@ namespace Activity2Part1.Models
             this.Password = Password;
             this.Email = Email;
             this.Phone = Phone;
+        }
+
+        public UserModel()
+        {
+
         }
     }
 }
